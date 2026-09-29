@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "global": {
+    "cull_versions": true,
+    "enable_TYPECODE": false,
+    "log_level": "info",
+    "web_app": {
+      "enable_bwi": true,
+      "enable_minimap": true,
+      "expose_CODE": true,
+      "expose_TYPECODE": false,
+      "port": 9024
+    }
+  },
+  "characters": {
+    "Character02": {
+      "realm": "SR_USIII",
+      "script": "adventureland/headless/Trio.js",
+      "typescript": null,
+      "enabled": false,
+      "version": 0
+    },
+    "Character01ROG": {
+      "realm": "SR_EUI",
+      "script": "adventureland/headless/Trio.js",
+      "typescript": null,
+      "enabled": false,
+      "version": 0
+    },
+    "Character07": {
+      "realm": "SR_USIII",
+      "script": "adventureland/headless/Trio.js",
+      "typescript": null,
+      "enabled": false,
+      "version": 0
+    },
+    "Character05": {
+      "realm": "SR_USIII",
+      "script": "adventureland/headless/Trio.js",
+      "typescript": null,
+      "enabled": false,
+      "version": 0
+    },
+    "Character03": {
+      "realm": "SR_USIII",
+      "script": "caracAL/examples/crabs.js",
+      "typescript": null,
+      "enabled": false,
+      "version": 0
+    },
+    "Character01MCH": {
+      "realm": "SR_USIII",
+      "script": "adventureland/headless/Merchant.js",
+      "typescript": null,
+      "enabled": false,
+      "version": 0
+    }
+  }
+}

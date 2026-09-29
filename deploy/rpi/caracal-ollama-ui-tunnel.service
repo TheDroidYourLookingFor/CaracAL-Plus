@@ -1,0 +1,32 @@
+[Unit]
+Description=Outbound restricted SSH tunnel to the private Ollama chat server
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=caracal
+WorkingDirectory=/opt/CaracALPlus
+EnvironmentFile=/opt/CaracALPlus/config/ollama-ui-tunnel.env
+Environment=HOME=/opt/CaracALPlus/.runtime-home
+Environment=XDG_CONFIG_HOME=/opt/CaracALPlus/.runtime-home/.config
+Environment=XDG_CACHE_HOME=/opt/CaracALPlus/.runtime-home/.cache
+Environment=XDG_DATA_HOME=/opt/CaracALPlus/.runtime-home/.local/share
+Environment=XDG_STATE_HOME=/opt/CaracALPlus/.runtime-home/.local/state
+ExecStart=${CARACAL_HOME}/scripts/start-ollama-ui-tunnel.sh
+Restart=always
+RestartSec=10
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_INET AF_UNIX
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target

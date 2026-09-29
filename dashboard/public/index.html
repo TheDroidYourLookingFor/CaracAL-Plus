@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="same-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; form-action 'self'">
+  <title>CaracAL+ Project Dashboard</title>
+  <link rel="stylesheet" href="./styles.css?v=__CARACAL_DASHBOARD_VERSION__">
+  <link rel="stylesheet" href="./dashboard-extra.css?v=__CARACAL_DASHBOARD_VERSION__">
+  <link rel="stylesheet" href="./worker-metrics.css?v=__CARACAL_DASHBOARD_VERSION__">
+</head>
+<body>
+  <main class="shell">
+    <noscript><section class="panel" aria-live="polite"><h2>Dashboard requires JavaScript</h2><p class="muted">Enable JavaScript to load the authenticated runtime snapshot and worker messages.</p></section></noscript>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Embedded local project observer</p>
+        <h1>CaracAL+ Project Dashboard</h1>
+        <p class="sub">Runtime health, deployment target, and recent GitHub work.</p>
+      </div>
+      <div class="refresh"><span id="last-updated" aria-live="polite" aria-atomic="true">Connecting…</span><button id="refresh" type="button" aria-controls="health-cards project-metrics project-state escalations activity project-change-logs">Refresh</button></div>
+    </header>
+    <section class="cards" id="health-cards" aria-label="Runtime health"></section>
+    <section class="project-metrics" aria-label="Worker and project metrics">
+      <div class="project-metrics-head"><div><h2>Worker &amp; project metrics</h2><p class="muted">Persisted heartbeat totals and published-change coverage.</p></div><span id="project-metrics-updated" class="muted"></span></div>
+      <div id="project-metrics"></div>
+    </section>
+    <section class="grid secondary-grid" aria-label="Project state and escalations">
+      <article class="panel"><div class="panel-head"><h2>Current project state</h2><span id="branch" class="mono muted">No Git snapshot</span></div><div id="project-state" class="state"></div></article>
+      <article class="panel"><div class="panel-head"><h2>Escalations</h2><span class="muted">Worker handoffs</span></div><div id="escalations" class="stack"></div></article>
+    </section>
+    <section class="grid">
+      <article class="panel wide"><div class="panel-head"><div><h2>Send instruction</h2><p class="muted panel-subtitle">Queue one approval-gated instruction for the local worker.</p></div><span class="muted">Signed-in users only</span></div><form id="chat-form" class="chat-form"><label class="sr-only" for="chat-input">Instruction for the local worker</label><textarea id="chat-input" maxlength="8000" rows="3" autocomplete="off" placeholder="Describe the next improvement or idea…" required></textarea><div class="chat-actions"><span class="muted">Local-only worker · no paid services</span><button id="chat-send" type="submit">Queue instruction</button></div></form></article>
+      <article class="panel chat-panel"><div class="panel-head"><div><h2>Worker messages</h2><p class="muted panel-subtitle">Responses and status updates from the local Ollama worker.</p></div><span id="chat-status" class="muted" aria-live="polite" aria-atomic="true">Loading…</span></div><div id="chat-messages" class="chat-messages" role="log" aria-live="polite" aria-atomic="false" aria-label="Worker messages"></div></article>
+      <article class="panel"><div class="panel-head"><h2>Recent commits</h2><span class="muted">Read from the VPS deployment history file</span></div><div id="activity" class="timeline"></div></article>
+    </section>
+    <section class="project-change-logs" aria-label="Project change logs">
+      <div class="project-change-logs-head"><div><h2>Published project change logs</h2><p class="muted">Meaningful committed changes grouped by the project area they touched.</p></div></div>
+      <div id="project-change-logs" class="project-change-log-grid"></div>
+    </section>
+    <dialog id="project-change-modal" class="project-change-modal" aria-labelledby="project-change-modal-title" aria-describedby="project-change-modal-content">
+      <div class="project-change-modal-head"><span id="project-change-modal-title" role="heading" aria-level="2">Commit details</span><button id="project-change-modal-close" type="button" aria-label="Close commit details">Close</button></div>
+      <div id="project-change-modal-content"></div>
+    </dialog>
+    <footer>Read-only embedded dashboard · deployment controls remain outside this window</footer>
+  </main>
+  <script src="./app.js?v=__CARACAL_DASHBOARD_VERSION__"></script>
+</body>
+</html>

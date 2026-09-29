@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Adventure Land - CaracAL+
+Comment=Open the Adventure Land client served locally by CaracAL+
+Exec=/opt/CaracALPlus/scripts/start-client.sh
+Icon=applications-games
+Terminal=false
+Categories=Game;

@@ -1,0 +1,25 @@
+[Unit]
+Description=CaracAL+ headless caracAL runtime
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=caracal
+Group=caracal
+WorkingDirectory=/opt/CaracALPlus
+EnvironmentFile=/opt/CaracALPlus/.env
+Environment=HOME=/opt/CaracALPlus/.runtime-home
+Environment=XDG_CONFIG_HOME=/opt/CaracALPlus/.runtime-home/.config
+Environment=XDG_CACHE_HOME=/opt/CaracALPlus/.runtime-home/.cache
+Environment=XDG_DATA_HOME=/opt/CaracALPlus/.runtime-home/.local/share
+Environment=XDG_STATE_HOME=/opt/CaracALPlus/.runtime-home/.local/state
+ExecStart=/opt/CaracALPlus/scripts/start-headless.sh
+Restart=on-failure
+RestartSec=10
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target
