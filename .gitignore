@@ -16,3 +16,12 @@ Caddyfile
 .env
 deploy-backups/
 *.local
+# Local credentials and generated project configuration
+config/*.env
+!config/*.env.example
+config/caracAL.config.js
+
+# Generated client assets are fetched locally and are not part of the release
+/client/export/
+/vendor/caracAL/game_files/
+/vendor/caracAL/TYPECODE.out/

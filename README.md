@@ -1,6 +1,6 @@
 # CaracAL+
 
-Configurable Adventure Land client runtime with headless character management, a browser monitor, and optional Ollama chat.
+CaracAL+ extends [caracAL](https://github.com/numbereself/caracAL), a Node.js runtime for Adventure Land scripts. It adds headless deployment, environment-based configuration, a browser monitor, and optional Ollama chat around the upstream client model.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE) [![Last commit](https://img.shields.io/github/last-commit/TheDroidYourLookingFor/CaracAL-Plus)](https://github.com/TheDroidYourLookingFor/CaracAL-Plus/commits/main)
 
@@ -48,11 +48,17 @@ Check service logs with `sudo journalctl -u caracalplus-headless.service -f`. Re
 
 ## Features
 
-- Headless Adventure Land character coordination and client control.
-- Browser-based monitor and maintainer dashboard.
-- Environment-driven monitor authentication and deployment settings.
-- Optional Docker/Caddy deployment and restricted Ollama relay.
-- systemd service templates for headless and client processes.
+CaracAL+ keeps the upstream project’s Node.js client architecture and adds a configurable deployment layer.
+
+- Run Adventure Land JavaScript scripts in Node.js with the upstream client APIs and character coordinator.
+- Use optional TypeScript scripts through the upstream Webpack pipeline.
+- Coordinate multiple characters, recover disconnected clients, and share state through the `parent.caracAL` helpers.
+- Inspect characters in the browser monitor, with the upstream monitoring panel and minimap support.
+- Persist browser-style `localStorage` and `sessionStorage` data between runs, and write structured, rotating logs.
+- Configure accounts, authentication, ports, paths, and deployment through environment variables.
+- Use the CaracAL+ dashboard, CODE sync helpers, systemd and Docker examples, and optional Ollama chat and relay.
+
+The runtime runs under Node.js rather than a full browser. Scripts that rely on the browser DOM or PIXI renderer may need browser-side checks or fallbacks. See the [original caracAL README](https://github.com/numbereself/caracAL#readme) for upstream runtime concepts and examples.
 
 ## Configuration
 
@@ -134,6 +140,12 @@ Use `systemctl status` and `journalctl -u` to inspect service state and logs. Th
 | `systemd/` | Headless and client service templates. |
 | `vendor/caracAL/` | Vendored character coordinator and runtime; see its own license file. |
 | `client/export/`, `vendor/caracAL/game_files/` | Generated/upstream game assets; intentionally not distributed. |
+
+## Upstream and generated files
+
+CaracAL+ builds on the original [numbereself/caracAL](https://github.com/numbereself/caracAL) project. The client export and downloaded game-version cache are not included in this release; configure access to the client resources you use and run `scripts/update-client-cache.js` after installation.
+
+Keep local game data, character scripts, storage, logs, and real configuration files out of commits. Git ignores `client/export/`, `vendor/caracAL/game_files/`, the vendor runtime’s generated CODE/TYPECODE output, local storage, logs, and secret-bearing config files. Safe templates such as `.env.example` remain tracked.
 
 ## Troubleshooting
 
